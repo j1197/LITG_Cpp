@@ -45,17 +45,19 @@ int main () {
 
     list<string> possiblewords;
 
-    for(string word: words)
-        list<char> word_list_temp(word_list_temp.begin(), word_list_temp.end());
+    for(string word: words) {
+        list<char> word_list_temp(word.begin(), word.end());
         bool flag = true;
-        for(char letter: word_list_temp)
+        for (char letter: word_list_temp) {
             bool found = (std::find(chosenwordlist.begin(), chosenwordlist.end(), letter) != chosenwordlist.end());
             if (found && flag)
                 flag = true;
             else
                 flag = false;
+        }
         if (flag)
             possiblewords.push_back(word);
+    }
 
 
     cout<<"Number of possible words are: "<< possiblewords.size() << endl;

@@ -24,14 +24,15 @@ int main () {
     srand(time(0));
     int random = rand();
     int min = 0;
-    int max = 44000;
+    int max = 370349;
     //cout << "Seed = " << time(0) << endl;
     int finalNum = rand() % (max - min + 1) + min;
     //cout << "Random number = " << finalNum << endl;
     vector <string> words;
-    ifstream file("/Users/siddhantbansal/Desktop/Hitler_CPP/words.txt");
+    ifstream file("/Users/jp/Desktop/words.txt");
     string line;
     while (getline(file, line)) words.push_back(line);
+
 
     string chosenword = words[rand() % words.size()];
     transform(chosenword.begin(), chosenword.end(), chosenword.begin(), ::tolower);
@@ -40,8 +41,8 @@ int main () {
 
 
     list<char> chosenwordlist(chosenword.begin(), chosenword.end());
-    for (char c:chosenwordlist)
-        cout << c << "\n";
+    //for (char c:chosenwordlist)
+        //cout << c << "\n";
 
     list<string> possiblewords;
 
@@ -74,29 +75,29 @@ int main () {
 
         if (std::find(possiblewords.begin(), possiblewords.end(), guessed) != possiblewords.end())
         {
-            cout<<"Yes, possible word!"<<endl;
+            cout<<"Yes, this is a possible word!"<<endl;
             possiblewords.remove(guessed);
             listwordsguessed.push_back(guessed);
         }
         else if (std::find(listwordsguessed.begin(), listwordsguessed.end(), guessed) != listwordsguessed.end())
         {
-            cout << "You have already guessed the word!" << endl;
+            cout << "You have already guessed this word!" << endl;
         }
         else if (possiblewords.size()==0)
         {
-            cout<<"Victory!"<<endl;
+            cout<<"Victory, you have guessed all the words!"<<endl;
             exit(0);
         }
         else if(guessed == "q")
         {
-            cout <<"Thanks, rest of the words: " << endl;
+            cout <<"Thank you for playing, rest of the words are: " << endl;
             for ( string c: possiblewords)
                 cout<<c<<endl;
             exit(0);
         }
         else if (std::find(possiblewords.begin(), possiblewords.end(), guessed) == possiblewords.end())
         {
-            cout<<"Sorry, not a possible word" << endl;
+            cout<<"Sorry, this is not a possible word" << endl;
             no_trials = no_trials - 1;
         }
         else if(no_trials == 0){

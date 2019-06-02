@@ -15,6 +15,7 @@
 #include <vector>
 #include <cctype>
 #include <algorithm>
+#include<stdlib.h>
 
 using namespace std;
 
@@ -55,6 +56,62 @@ int main () {
                 flag = false;
         if (flag)
             possiblewords.push_back(word);
+
+
+    cout<<"Number of possible words are: "<< possiblewords.size() << endl;
+    int no_trials = (possiblewords.size())/2;
+    cout<<"Number of guesses are: "<< no_trials << endl;
+
+    list<string> listwordsguessed;
+
+    while(true){
+        cout<<"Guess possible words: "<<endl;
+        string guessed;
+        getline( cin, guessed);
+        transform(guessed.begin(), guessed.end(), guessed.begin(), ::tolower);
+
+        if (std::find(possiblewords.begin(), possiblewords.end(), guessed) != possiblewords.end())
+        {
+            cout<<"Yes, possible word!"<<endl;
+            possiblewords.remove(guessed);
+            listwordsguessed.push_back(guessed);
+        }
+        else if (std::find(listwordsguessed.begin(), listwordsguessed.end(), guessed) != listwordsguessed.end())
+        {
+            cout << "You have already guessed the word!" << endl;
+        }
+        else if (possiblewords.size()==0)
+        {
+            cout<<"Victory!"<<endl;
+            //exit()
+        }
+        else if(guessed == 'qq')
+        {
+            cout <<"Thanks, rest of the words: " << endl;
+            for ( string c: possiblewords)
+                cout<<c<<endl;
+            //exit()
+        }
+        else if (std::find(possiblewords.begin(), possiblewords.end(), guessed) == possiblewords.end())
+        {
+            cout<<"Sorry, not a possible word" << endl;
+            no_trials = no_trials - 1;
+        }
+        else if(no_trials == 0){
+            cout<<"Game over."<< endl;
+            //exit()
+        }
+
+
+
+
+    }
+
+
+
+
+
+
 
 
     return 0;

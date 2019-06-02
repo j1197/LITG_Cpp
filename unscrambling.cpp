@@ -29,11 +29,11 @@ int main () {
 
     string chosenword = words[rand() % words.size()];
     transform(chosenword.begin(), chosenword.end(), chosenword.begin(), ::tolower);
-    cout << chosenword << endl;
+    //cout << chosenword << endl;
 
     string shuffled = chosenword;
 
-    cout << chosenword << endl;
+    //cout << chosenword << endl;
     random_shuffle(shuffled.begin(), shuffled.end());
     cout << "Hello! Welcome to the game 'Unscramble the word'! \n";
     cout << "The game is straightforward. The given word has to be unjumbled and it will, post unscrambling, form an actual English word. \n";

@@ -29,7 +29,7 @@ int main () {
     int finalNum = rand() % (max - min + 1) + min;
     //cout << "Random number = " << finalNum << endl;
     vector <string> words;
-    ifstream file("/Users/jp/Desktop/words.txt");
+    ifstream file("/Users/siddhantbansal/Desktop/Hitler_CPP/words.txt");
     string line;
     while (getline(file, line)) words.push_back(line);
 
@@ -85,14 +85,14 @@ int main () {
         else if (possiblewords.size()==0)
         {
             cout<<"Victory!"<<endl;
-            //exit()
+            exit(0);
         }
-        else if(guessed == 'qq')
+        else if(guessed == "q")
         {
             cout <<"Thanks, rest of the words: " << endl;
             for ( string c: possiblewords)
                 cout<<c<<endl;
-            //exit()
+            exit(0);
         }
         else if (std::find(possiblewords.begin(), possiblewords.end(), guessed) == possiblewords.end())
         {
@@ -101,7 +101,7 @@ int main () {
         }
         else if(no_trials == 0){
             cout<<"Game over."<< endl;
-            //exit()
+            exit(0);
         }
 
 

@@ -35,24 +35,21 @@ int countxx(string s, char x){
 
 int actualword(string g){
     vector <string> words;
-    ifstream file("/Users/siddhantbansal/Desktop/Hitler/listofanagrams.txt");
+    ifstream file("/Users/jp/Desktop/words.txt");
     string line;
     while (getline(file, line)) words.push_back(line);
-    if (std::find(words.begin(), words.end(), g) == words.end()){
-        cout<<"You are correct.";
+    list<string> word_list(words.begin(),words.end());
+
+    if (std::find(word_list.begin(), word_list.end(), g) != word_list.end()){
+        cout<<"You are correct, congratulations!"<<endl;
         exit(0);}
     else{
-        cout<<"You are wrong.";
+        cout<<"Sorry, this is incorrect as it is not an actual English word."<<endl;
         exit(0);}
     return 0;
 }
 
 int norepeats(string e,string f){
-    //int freq[128];
-    //for(int k = 0; k<128;k++){
-    //freq[k] = 0;
-    //for (char letter: e)
-        //freq[letter]++;
     string myKey;
     map<string,int> countsques;
     for (char letterx: e){
@@ -72,7 +69,7 @@ int norepeats(string e,string f){
     if (countsques == countsana)
         actualword(f);
     else
-        cout<<"Wrong answer.";
+        cout<<"Sorry, this is the wrong answer as it repeats the letters."<<endl;
         exit(0);
 
 
@@ -83,7 +80,7 @@ int norepeats(string e,string f){
 int noextra(string c, string d){
     for(char letter: d){
         if (std::find(c.begin(), c.end(), letter) == c.end()){
-            cout<<"Wrong answer."<<endl;
+            cout<<"Sorry, this is the wrong answer as it uses extra letters."<<endl;
             exit(0);}
         else
             norepeats(c,d);
@@ -102,7 +99,7 @@ int letterspresent ( string a, string b){
         if (std::find(b_list.begin(), b_list.end(), letter) != b_list.end())
             x = x + 1;
         else{
-            cout << "Sorry, wrong answer.";
+            cout << "Sorry, this is the wrong answer as it does not use all the letters in the question."<<endl;
             exit(0);}
     }
     if (x==a.size())
@@ -123,7 +120,7 @@ int main () {
     int finalNum = rand() % (max - min + 1) + min;
     //cout << "Random number = " << finalNum << endl;
     vector <string> words;
-    ifstream file("/Users/siddhantbansal/Desktop/Hitler/listofanagrams.txt");
+    ifstream file("/Users/jp/Desktop/listofanagrams.txt");
     string line;
     while (getline(file, line)) words.push_back(line);
 
@@ -142,7 +139,7 @@ int main () {
     getline(cin,anagram);
     transform(anagram.begin(), anagram.end(), anagram.begin(), ::tolower);
     if (anagram == question)
-        cout << "Invalid answer" << endl;
+        cout << "Invalid answer." << endl;
 
     else if (anagram == "q"){
         cout << "Thank you for playing!" << endl;

@@ -33,12 +33,12 @@ int countxx(string s, char x){
 }
 
 
-int actualword( string g){
+int actualword(string g){
     vector <string> words;
     ifstream file("/Users/siddhantbansal/Desktop/Hitler/listofanagrams.txt");
     string line;
     while (getline(file, line)) words.push_back(line);
-    if (std::find(words.begin(), words.end(), g) != words.end()){
+    if (std::find(words.begin(), words.end(), g) == words.end()){
         cout<<"You are correct.";
         exit(0);}
     else{

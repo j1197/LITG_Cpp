@@ -35,7 +35,7 @@ int countxx(string s, char x){
 
 int actualword( string g){
     vector <string> words;
-    ifstream file("/Users/jp/Desktop/words.txt");
+    ifstream file("/Users/siddhantbansal/Desktop/Hitler/listofanagrams.txt");
     string line;
     while (getline(file, line)) words.push_back(line);
     if (std::find(words.begin(), words.end(), g) != words.end()){
@@ -53,18 +53,18 @@ int norepeats(string e,string f){
     //freq[k] = 0;
     //for (char letter: e)
         //freq[letter]++;
-
+    string myKey;
     map<string,int> countsques;
     for (char letterx: e){
-        string myKey = letterx;
+        myKey = letterx;
         int myVal = countxx(e,letterx);
         countsques.insert(pair<string,int>(myKey, myVal));
     }
     //cout << countsques << endl;
-
+    string myKey1;
     map<string,int> countsana;
     for (char letter1: f){
-        string myKey1 = letter1;
+        myKey1 = letter1;
         int myVal1 = countxx(f,letter1);
         countsana.insert(pair<string,int>(myKey1, myVal1));
     }
@@ -123,7 +123,7 @@ int main () {
     int finalNum = rand() % (max - min + 1) + min;
     //cout << "Random number = " << finalNum << endl;
     vector <string> words;
-    ifstream file("/Users/jp/Desktop/listofanagrams.txt");
+    ifstream file("/Users/siddhantbansal/Desktop/Hitler/listofanagrams.txt");
     string line;
     while (getline(file, line)) words.push_back(line);
 

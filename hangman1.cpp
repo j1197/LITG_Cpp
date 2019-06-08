@@ -72,16 +72,18 @@ int main () {
 
     list<char> guessedword;
 
+    string str1 = chosenword;
+    string str2 = guessedletter;
+    int result = strncmp(str1.c_str(), str2.c_str(), str1.size());
+
     while (no_of_guesses > 0) {
         if (std::find(lettersguessed.begin(), lettersguessed.end(), guessedletter) == lettersguessed.end()) {
             lettersguessed.push_back(guessedletter);
         }
         else {
-            guessedword = getGuessedWord(chosenword, guessedletter);
+            guessedword = getGuessedWord(chosenword, guessedletter);}
 //                cout << "Oops! You've already guessed that letter:" << guessedword << endl;}
-            // Hitler darling, there is some issue with this line below, chosenword is not of the format which the code expects ig, rest loops are
-            // working fine, if we compile with this line commented then the code is compiled
-            if (std::find(chosenword.begin(), chosenword.end(), guessedletter) != chosenword.end()) {
+            if (result == 0) {
                 guessedword = getGuessedWord(chosenword, guessedletter);
 //                cout << "Good guess! " << guessedword;
             }
@@ -102,7 +104,6 @@ int main () {
                     cout << "Sorry, you have run out of guesses, the word was: " << chosenword << endl;
                     exit(0);
                 }
-            }
 
             return 0;
 

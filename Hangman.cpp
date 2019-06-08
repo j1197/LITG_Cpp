@@ -7,21 +7,22 @@
 #include <vector>
 #include <cctype>
 #include<stdio.h>
+#include<algorithm>
 
 using namespace std;
 
 int hideword(string x){
     list<char> xlist(x.begin(),x.end());
     for(char c:x){
-        if (x.compare("a")==0)
+        if (std::find(xlist.begin(),xlist.end(), "a" != xlist.end()))
          cout << "a" << "  ";
-        else if (x.compare("e")==0)
+        else if (std::find(xlist.begin(),xlist.end(), "e" != xlist.end()))
             cout << "e" << "  ";
-        else if (x.compare("a")==0)
+        else if (std::find(xlist.begin(),xlist.end(), "o" != xlist.end()))
             cout << "i" << "  ";
-        else if (x.compare("a")==0)
+        else if (std::find(xlist.begin(),xlist.end(), "i" != xlist.end()))
             cout << "o" << "  ";
-        else if (x.compare("a")==0)
+        else if (std::find(xlist.begin(),xlist.end(), "u" != xlist.end()))
             cout << "u" << "  ";
         else
             cout << "_" << "  ";
@@ -29,8 +30,8 @@ int hideword(string x){
     }
 }
 
-string getGuessedWord(string secretword,char lettersguessed){
-    list<string> word;
+list getGuessedWord(string secretword,char lettersguessed){
+    list<char> word;
     for(char letter:secretword){
        if(std::find(lettersguessed.begin() ,lettersguessed.end() ,letter != lettersguessed.end()))
            word.push_back(letter);
@@ -65,17 +66,19 @@ int main () {
     wordtobeguessed = hideword(chosenword);
 
     cout << "The word for you to guess is: " << wordtobeguessed << endl;
+
+    string letter = "aeiou";
     int a = 0;
     for(char c:chosenword){
-        if ((chosenword.compare("a")==0)
+        if (std::find(chosenword.begin(),chosenword.end(), letter != chosenword.end()))
             ;
-        else if (chosenword.compare("e")==0)
+        else if (std::find(chosenword.begin(),chosenword.end(), letter != chosenword.end()))
             ;
-        else if (chosenword.compare("i")==0)
+        else if (std::find(chosenword.begin(),chosenword.end(), letter != chosenword.end()))
             ;
-        else if (chosenword.compare("o")==0)
+        else if (std::find(chosenword.begin(),chosenword.end(), letter != chosenword.end()))
             ;
-        else if (chosenword.compare("u")==0)
+        else if (std::find(chosenword.begin(),chosenword.end(), letter != chosenword.end()))
             ;
         else
             a = a+1;}

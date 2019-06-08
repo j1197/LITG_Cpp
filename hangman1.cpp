@@ -10,13 +10,13 @@
 
 using namespace std;
 
-string getGuessedWord(string secretword,char lettersguessed){
+list<char> getGuessedWord(string secretword,string lettersguessed){
     list<char> word;
     for(char letter:secretword){
-        if(std::find(lettersguessed.begin() ,lettersguessed.end() ,letter != lettersguessed.end()))
+        if(std::find(lettersguessed.begin() ,lettersguessed.end() ,letter) != lettersguessed.end())
             word.push_back(letter);
         else
-            word.push_back("_");
+            word.push_back('_');
     }
     return word;
 }
@@ -39,7 +39,9 @@ int main () {
     list<char> chosenwordlist(chosenword.begin(), chosenword.end());
 
     cout << "Welcome to the game 'Hangman'!" << endl;
-    cout << "The rules of the game are to guess the letters to replace the blanks. You will get a certain number of tries to guess the word in."<< endl;
+    cout
+            << "The rules of the game are to guess the letters to replace the blanks. You will get a certain number of tries to guess the word in."
+            << endl;
 
     cout << chosenword << endl;
 
@@ -50,15 +52,15 @@ int main () {
         int isavowel = (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u');
 
         if (isavowel)
-            cout << c << "  ";
+            cout << c << " " ;
         else {
-            cout << "_" << "  ";
+            cout << '_' << " ";
             a = a + 1;
         }
     }
 
 
-    int no_of_guesses = (2*a) - 1;
+    int no_of_guesses = (2 * a) - 1;
     cout << "The number of guesses are: " << no_of_guesses << endl;
 
 
@@ -66,39 +68,44 @@ int main () {
     cout << "Please enter your guess: " << endl;
     getline(cin, guessedletter);
 
-    list<string> lettersguessed;
+    list <string> lettersguessed;
 
-    string guessedword;
+    list<char> guessedword;
 
-    while (no_of_guesses > 0){
-            if(std::find(lettersguessed.begin(), lettersguessed.end(), guessedletter) == lettersguessed.end())
-                lettersguessed.push_back(guessedletter);
-            else{
-                guessedword = getGuessedWord(chosenword,guessedletter);
-                cout << "Oops! You've already guessed that letter:" << guessedword << endl;}
-
-            if(std::find(chosenword.begin(), chosenword.end(), guessedletter) != chosenword.end())
-            {guessedword = getGuessedWord(chosenword,guessedletter);
-                cout << "Good guess! " << guessedword;}
-            else{
-                guessedword = getGuessedWord(chosenword,guessedletter);
-                cout << "Oops! That letter is not in the word!" << guessedword;
-                no_of_guesses = no_of_guesses - 1;}
-
-            if(std::find(guessedword.begin(), guessedword.end(), "_") != guessedword.end()){
-                cout << "Congrats! You won!" << endl;
-                exit(0);}
-
-            if((no_of_guesses == 0) && (std::find(guessedword.begin(), guessedword.end(), "_") == guessedword.end())){
-                cout << "Sorry, you have run out of guesses, the word was: " << chosenword << endl;
-                exit(0);
-            }
+    while (no_of_guesses > 0) {
+        if (std::find(lettersguessed.begin(), lettersguessed.end(), guessedletter) == lettersguessed.end()) {
+            lettersguessed.push_back(guessedletter);
         }
+        else {
+            guessedword = getGuessedWord(chosenword, guessedletter);
+//                cout << "Oops! You've already guessed that letter:" << guessedword << endl;}
+            // Hitler darling, there is some issue with this line below, chosenword is not of the format which the code expects ig, rest loops are
+            // working fine, if we compile with this line commented then the code is compiled
+            if (std::find(chosenword.begin(), chosenword.end(), guessedletter) != chosenword.end()) {
+                guessedword = getGuessedWord(chosenword, guessedletter);
+//                cout << "Good guess! " << guessedword;
+            }
+                else{
+                    guessedword = getGuessedWord(chosenword, guessedletter);
+//                cout << "Oops! That letter is not in the word!" << guessedword;
+                    cout << "Oops! That letter is not in the word!";
+                    no_of_guesses = no_of_guesses - 1;
+                }
 
-        return 0;
+                if (std::find(guessedword.begin(), guessedword.end(), '_') != guessedword.end()) {
+                    cout << "Congrats! You won!" << endl;
+                    exit(0);
+                }
+
+                if ((no_of_guesses == 0) &&
+                    (std::find(guessedword.begin(), guessedword.end(), '_') == guessedword.end())) {
+                    cout << "Sorry, you have run out of guesses, the word was: " << chosenword << endl;
+                    exit(0);
+                }
+            }
+
+            return 0;
 
 
-
-
-
-}
+        }
+    }

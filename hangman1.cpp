@@ -30,7 +30,7 @@ int main () {
     int finalNum = rand() % (max - min + 1) + min;
     //cout << "Random number = " << finalNum << endl;
     vector <string> words;
-    ifstream file("/Users/jp/Desktop/words.txt");
+    ifstream file("/Users/siddhantbansal/Desktop/Hitler_CPP/words.txt");
     string line;
     while (getline(file, line)) words.push_back(line);
 
@@ -65,8 +65,8 @@ int main () {
 
 
     string guessedletter;
-    cout << "Please enter your guess: " << endl;
-    getline(cin, guessedletter);
+//    cout << "Please enter your guess: " << endl;
+//    getline(cin, guessedletter);
 
     list <string> lettersguessed;
 
@@ -76,37 +76,42 @@ int main () {
     string str2 = guessedletter;
     int result = strncmp(str1.c_str(), str2.c_str(), str1.size());
 
-    while (no_of_guesses > 0) {
+    while (no_of_guesses > 0)
+    {
+        cout << "Please enter your guess: " << endl;
+        getline(cin, guessedletter);
+        cout << "Running loop number " << no_of_guesses << endl;
         if (std::find(lettersguessed.begin(), lettersguessed.end(), guessedletter) == lettersguessed.end()) {
             lettersguessed.push_back(guessedletter);
+            cout << "Pushing the letter in lettersguessed" << endl;
         }
         else {
-            guessedword = getGuessedWord(chosenword, guessedletter);}
-//                cout << "Oops! You've already guessed that letter:" << guessedword << endl;}
-            if (result == 0) {
-                guessedword = getGuessedWord(chosenword, guessedletter);
-//                cout << "Good guess! " << guessedword;
+            if (std::find(lettersguessed.begin(), lettersguessed.end(), guessedletter) != lettersguessed.end()) {
+                guessedword = getGuessedWord(chosenword, lettersguessed);
+                cout << "Oops! You've already guessed that letter:" << endl;
             }
-                else{
-                    guessedword = getGuessedWord(chosenword, guessedletter);
-//                cout << "Oops! That letter is not in the word!" << guessedword;
-                    cout << "Oops! That letter is not in the word!";
-                    no_of_guesses = no_of_guesses - 1;
-                }
+        }
+        if (result == 0) {
+            guessedword = getGuessedWord(chosenword, lettersguessed);
+            cout << "Good guess! ";
+        }
+        else{
+            guessedword = getGuessedWord(chosenword, lettersguessed);
+            cout << "Oops! That letter is not in the word!" << endl;
+            no_of_guesses = no_of_guesses - 1;
+        }
 
-                if (std::find(guessedword.begin(), guessedword.end(), '_') != guessedword.end()) {
-                    cout << "Congrats! You won!" << endl;
-                    exit(0);
-                }
+        if (std::find(guessedword.begin(), guessedword.end(), '_') != guessedword.end()) {
+            cout << "Congrats! You won!" << endl;
+        exit(0);
+            }
 
-                if ((no_of_guesses == 0) &&
-                    (std::find(guessedword.begin(), guessedword.end(), '_') == guessedword.end())) {
-                    cout << "Sorry, you have run out of guesses, the word was: " << chosenword << endl;
-                    exit(0);
-                }
-
-            return 0;
-
+        if ((no_of_guesses == 0) &&
+            (std::find(guessedword.begin(), guessedword.end(), '_') == guessedword.end())) {
+            cout << "Sorry, you have run out of guesses, the word was: " << chosenword << endl;
+            exit(0);
+        }
 
         }
+    return 0;
     }

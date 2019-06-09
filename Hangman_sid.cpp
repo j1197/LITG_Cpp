@@ -14,18 +14,134 @@
 
 using namespace std;
 
-string getGuessedWord(string secretword,char lettersguessed){
-    list<string> word;
-    for(char letter:secretword){
-        if(std::find(lettersguessed.begin() ,lettersguessed.end() ,letter != lettersguessed.end()))
+list<char> get_guessed_word(string secretword, list<char> lettersguessed){
+    list<char> word;
+//    cout << "Initiall word is: ";
+//    for (char letter: word){
+//        cout << letter;
+//    }
+//    cout << endl;
+    cout << "secret word received is: " << secretword << endl;
+    cout << "Letterguessed reveived is: ";
+    for (char letter: lettersguessed){
+        cout << letter;
+    }
+    cout << endl;
+    for (char letter:secretword){
+        int is_vowel = (letter== 'a' || letter== 'e' || letter== 'i' || letter== 'o' || letter== 'u');
+        if (is_vowel == 1){
             word.push_back(letter);
-        else
-            word.push_back("_");
+            continue;
+        }
+        int temp = 0;
+        for (char letter_1: lettersguessed) {
+            temp = (letter == letter_1);
+        }
+        if (temp == 1){
+            word.push_back(letter);
+        }
+        else{
+            word.push_back('_');
+        }
     }
     return word;
 }
 
 int main(){
-    string chosen_word;
-    chosen_word = getGuessedWord()
+    srand(time(0));
+    int random = rand();
+    int min = 0;
+    int max = 44000;
+    int finalNum = rand() % (max - min + 1) + min;
+    vector <string> words;
+    ifstream file("/Users/siddhantbansal/Desktop/Hitler_CPP/words.txt");
+    string line;
+    while (getline(file, line)) words.push_back(line);
+
+    string chosenword = words[rand() % words.size()];
+    cout << "Chosen word is " << chosenword << endl;
+    transform(chosenword.begin(), chosenword.end(), chosenword.begin(), ::tolower);
+    list<char> chosenwordlist(chosenword.begin(), chosenword.end());
+
+    cout << "Welcome to the game 'Hangman'!" << endl;
+
+    cout << "The word is: ";
+
+    list<char> letters_guessed_till_now;
+
+    int a = 0;
+    for (char letter: chosenword){
+        int is_vowel = (letter== 'a' || letter== 'e' || letter== 'i' || letter== 'o' || letter== 'u');
+        if (is_vowel){
+//            letters_guessed_till_now.push_back(letter);
+            cout << letter<< " ";
+        }
+        else {
+            cout << '_' << " ";
+            a = a + 1;
+        }
+    }
+    cout << endl;
+
+    int no_guesses = (2 * a) - 1;
+    cout << "The number of guesses are: " << no_guesses << endl;
+
+    char guessed_letter_user;
+
+    list<char> guessed_word;
+
+    while (no_guesses > 0){
+        cout << "Enter your guess: " << endl;
+        cin >> guessed_letter_user;
+
+        int flag = 0;
+
+        for (char letters_guessed: letters_guessed_till_now){
+            if (guessed_letter_user == letters_guessed){
+                flag = 1;
+            }
+            else{}
+        }
+        if (flag == 1){
+            cout << "Letter already guessed" << endl;
+            continue;
+        }
+        else{
+//            cout << "New word!" << endl;
+            letters_guessed_till_now.push_back(guessed_letter_user);
+        }
+
+
+        int flag_1 = 0;
+
+        for (char chosen_word: chosenwordlist){
+            if (chosen_word == guessed_letter_user){
+//                cout << "Yaye! Correct word!" << endl;
+                flag_1 = 1;
+            }
+            else{
+//                cout << "Wrong guess." << endl;
+            }
+        }
+        if (flag_1 == 1){
+            cout << "Correct Guess!" << endl;
+            guessed_word = get_guessed_word(chosenword, letters_guessed_till_now);
+            cout << "Good Guess: ";
+            for (char letter: guessed_word){
+                cout << letter;
+            }
+            cout << endl;
+        }
+        else{
+            cout << "Wrong Guess." << endl;
+            guessed_word = get_guessed_word(chosenword, letters_guessed_till_now);
+            for (char letter: guessed_word){
+                cout << letter;
+            }
+            cout << endl;
+            no_guesses = no_guesses - 1;
+        }
+
+
+    }
 }

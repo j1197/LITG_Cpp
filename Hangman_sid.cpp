@@ -1,7 +1,3 @@
-//
-// Created by Siddhant Bansal on 2019-06-08.
-//
-
 #include <iostream>
 #include <fstream>
 #include <string.h>
@@ -16,17 +12,20 @@ using namespace std;
 
 list<char> get_guessed_word(string secretword, list<char> lettersguessed){
     list<char> word;
-//    cout << "Initiall word is: ";
+//    cout << "Initial word is: ";
 //    for (char letter: word){
 //        cout << letter;
 //    }
 //    cout << endl;
     cout << "secret word received is: " << secretword << endl;
-    cout << "Letterguessed reveived is: ";
-    for (char letter: lettersguessed){
+    cout << "Letter guessed received is: ";
+    for (char letter: lettersguessed){    //lettersguessed is a list of all letters user has guessed -> doesn't distinguish between right and wrong
         cout << letter;
     }
     cout << endl;
+
+
+
     for (char letter:secretword){
         int is_vowel = (letter== 'a' || letter== 'e' || letter== 'i' || letter== 'o' || letter== 'u');
         if (is_vowel == 1){
@@ -39,9 +38,13 @@ list<char> get_guessed_word(string secretword, list<char> lettersguessed){
         }
         if (temp == 1){
             word.push_back(letter);
+            for(char c:word)
+                cout << c << "  ";
         }
         else{
             word.push_back('_');
+            for(char c:word)
+                cout << c << "  ";
         }
     }
     return word;
@@ -54,7 +57,7 @@ int main(){
     int max = 44000;
     int finalNum = rand() % (max - min + 1) + min;
     vector <string> words;
-    ifstream file("/Users/siddhantbansal/Desktop/Hitler_CPP/words.txt");
+    ifstream file("/Users/jp/Desktop/words.txt");
     string line;
     while (getline(file, line)) words.push_back(line);
 
@@ -90,6 +93,10 @@ int main(){
 
     list<char> guessed_word;
 
+
+    list<char> rightlettersguessed;
+    list<char> wronglettersguessed;
+
     while (no_guesses > 0){
         cout << "Enter your guess: " << endl;
         cin >> guessed_letter_user;
@@ -118,26 +125,32 @@ int main(){
             if (chosen_word == guessed_letter_user){
 //                cout << "Yaye! Correct word!" << endl;
                 flag_1 = 1;
+                rightlettersguessed.push_back(chosen_word);
             }
             else{
 //                cout << "Wrong guess." << endl;
+                  wronglettersguessed.push_back(chosen_word);
             }
         }
         if (flag_1 == 1){
             cout << "Correct Guess!" << endl;
-            guessed_word = get_guessed_word(chosenword, letters_guessed_till_now);
+            //guessed_word = get_guessed_word(chosenword, letters_guessed_till_now);
+            guessed_word = get_guessed_word(chosenword, rightlettersguessed);
             cout << "Good Guess: ";
-            for (char letter: guessed_word){
+            for (char letter: rightlettersguessed) {
                 cout << letter;
             }
+
             cout << endl;
         }
         else{
             cout << "Wrong Guess." << endl;
-            guessed_word = get_guessed_word(chosenword, letters_guessed_till_now);
-            for (char letter: guessed_word){
+            //guessed_word = get_guessed_word(chosenword, letters_guessed_till_now);
+            guessed_word = get_guessed_word(chosenword, wronglettersguessed);
+            for (char letter: wronglettersguessed){
                 cout << letter;
             }
+
             cout << endl;
             no_guesses = no_guesses - 1;
         }

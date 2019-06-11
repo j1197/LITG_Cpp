@@ -19,6 +19,7 @@ bool playAgain() // function to play again while clearing system
     char again;
     cout << "\n\nWould you like to play again? <y/n>: ";
     cin >> again;
+    again = tolower(again);
 
     cin.clear(); //clear and ignore cin
     cin.ignore();
@@ -35,18 +36,17 @@ string removespaces(string str){
 
 int letterspresent ( string a, char b){
     removespaces(a);
-    list<char> a_list(a.begin(), a.end());
-    int x = 0;
+    //list<char> a_list(a.begin(), a.end());
     int i = 0;
-    if(a[i] == b)
-        x = x + 1;
-    else
-        return 0;
-    if (x==a.size())
-        return 1;
-    else{
-        cout <<"Noo";
-        return 5;}
+    int x = 0;
+    for (int i = 0; i < a.length(); i++)
+    {
+        if(a[i] == b){
+            x = 1;
+            break;}
+        else
+            x = 0;}
+    return x;
 
 }
 
@@ -98,7 +98,7 @@ int main(){
     cout << endl;
 
     soFar = printedword;
-    //soFar = string(chosenword.size(), '_');     //word guessed so far
+    //word guessed so far
     used = "";                    // letters already guessed
 
     int checking;
@@ -112,34 +112,35 @@ int main(){
     while (num_of_wrong_guesses < no_guesses&& (soFar != chosenword)) {
 
 
-        cout << "\n\nYou have " << (no_guesses - num_of_wrong_guesses) << " incorrect guesses left.\n";
+        cout << "\n\nYou have " << (no_guesses - num_of_wrong_guesses) << " guesses left.\n";
         cout << "\nYou've used the following letters:\n" << used << endl;
         cout << "\nSo far, the word is:\n" << soFar << endl;
-
-        //used += askGuess(used);
 
         cout << "Enter your guess: " << endl;
         char guessedletters;
         cin >> guessedletters;
+        used.push_back(guessedletters);
         checking = letterspresent(chosenword, guessedletters);
 
         if(checking == 0){
             cout << "That letter is not present." << endl;
             num_of_wrong_guesses++;
         }
-        else
+        else{
             cout << "Yay! Good guess!." << endl;
-        for (int i = 0; i < chosenword.length(); ++i){
-            if (chosenword[i] == guessedletters)
-                soFar[i] = guessedletters;}
+            for (int i = 0; i < chosenword.length(); ++i){
+                if (chosenword[i] == guessedletters)
+                   soFar[i] = guessedletters;}}
 
 
         if (num_of_wrong_guesses == no_guesses)
         {
             cout << "\nYou have lost!";
-        }
 
-        cout << "\nThe word was " << chosenword << endl;
+            cout << "\nThe word was " << chosenword << endl;}
+
+        if(soFar == chosenword && num_of_wrong_guesses <= no_guesses)
+            cout << "You have won! The word is: " << chosenword << endl;
 
     } while(playAgain());
 

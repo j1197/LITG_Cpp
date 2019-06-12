@@ -34,6 +34,8 @@ int main () {
 
     string chosenword = words[rand() % words.size()];
     transform(chosenword.begin(), chosenword.end(), chosenword.begin(), ::tolower);
+
+
     cout << "Welcome to the game! You will be given a word and you have to guess other possible words from it.\n " << endl;
     cout << "Your word is: " << chosenword << endl;
 

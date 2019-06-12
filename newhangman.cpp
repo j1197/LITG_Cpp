@@ -14,25 +14,12 @@
 
 using namespace std;
 
-bool playAgain() // function to play again while clearing system
-{
-    char again;
-    cout << "\n\nWould you like to play again? <y/n>: ";
-    cin >> again;
-    again = tolower(again);
-
-    cin.clear(); //clear and ignore cin
-    cin.ignore();
-
-    system("cls");
-
-    return (again == 'y');
-}
 
 string removespaces(string str){
     str.erase(remove(str.begin(), str.end(), ' '), str.end());
     return str;
 }
+
 
 int letterspresent ( string a, char b){
     removespaces(a);
@@ -127,7 +114,7 @@ int main(){
             num_of_wrong_guesses++;
         }
         else{
-            cout << "Yay! Good guess!." << endl;
+            cout << "Yay! Good guess!" << endl;
             for (int i = 0; i < chosenword.length(); ++i){
                 if (chosenword[i] == guessedletters)
                    soFar[i] = guessedletters;}}
@@ -142,7 +129,7 @@ int main(){
         if(soFar == chosenword && num_of_wrong_guesses <= no_guesses)
             cout << "You have won! The word is: " << chosenword << endl;
 
-    } while(playAgain());
+    }
 
     return 0;
 }

@@ -54,54 +54,54 @@ int hangman(string question, string untilnow) {
     int a = 0;
     for (char letter: question) {
         int is_vowel = (letter == 'a' || letter == 'e' || letter == 'i' || letter == 'o' || letter == 'u');
-        if (is_vowel)
-            ;
+        if (is_vowel);
         else
             a = a + 1;
-
-        int no_guesses = (2 * a) - 1;
-        cout << "The number of guesses are: " << no_guesses << endl;
-
-        int num_of_wrong_guesses = 0;
-
-        string used = "";
-
-        while (num_of_wrong_guesses < no_guesses && (untilnow != question)) {
-
-
-            cout << "\n\nYou have " << (no_guesses - num_of_wrong_guesses) << " guesses left.\n";
-            cout << "\nYou've used the following letters:\n" << used << endl;
-            cout << "\nSo far, the word is:\n" << untilnow << endl;
-
-            cout << "Enter your guess: " << endl;
-            char guessedletters;
-            cin >> guessedletters;
-            used.push_back(guessedletters);
-            checking = letterspresentforhangman(question, guessedletters);
-
-            if (checking == 0) {
-                cout << "That letter is not present." << endl;
-                num_of_wrong_guesses++;
-            } else {
-                cout << "Yay! Good guess!" << endl;
-                for (int i = 0; i < question.length(); ++i) {
-                    if (question[i] == guessedletters)
-                        untilnow[i] = guessedletters;
-                }
-            }
-
-
-            if (num_of_wrong_guesses == no_guesses) {
-                cout << "\nYou have lost!";
-
-                cout << "\nThe word was " << question << endl;
-            }
-
-            if (untilnow == question && num_of_wrong_guesses <= no_guesses)
-                cout << "You have won! The word is: " << question << endl;
-
-        }
     }
+
+    int no_guesses = (2 * a) - 1;
+    cout << "The number of guesses are: " << no_guesses << endl;
+
+    int num_of_wrong_guesses = 0;
+
+    string used = "";
+
+    while (num_of_wrong_guesses < no_guesses && (untilnow != question)) {
+
+
+        cout << "\n\nYou have " << (no_guesses - num_of_wrong_guesses) << " guesses left.\n";
+        cout << "\nYou've used the following letters:\n" << used << endl;
+        cout << "\nSo far, the word is:\n" << untilnow << endl;
+
+        cout << "Enter your guess: " << endl;
+        char guessedletters;
+        cin >> guessedletters;
+        used.push_back(guessedletters);
+        checking = letterspresentforhangman(question, guessedletters);
+
+        if (checking == 0) {
+            cout << "That letter is not present." << endl;
+            num_of_wrong_guesses++;
+        } else {
+            cout << "Yay! Good guess!" << endl;
+            for (int i = 0; i < question.length(); ++i) {
+                if (question[i] == guessedletters)
+                    untilnow[i] = guessedletters;
+            }
+        }
+
+
+        if (num_of_wrong_guesses == no_guesses) {
+            cout << "\nYou have lost!";
+
+            cout << "\nThe word was " << question << endl;
+        }
+
+        if (untilnow == question && num_of_wrong_guesses <= no_guesses)
+            cout << "You have won! The word is: " << question << endl;
+
+    }
+
     return 0;
 }
 
@@ -348,6 +348,7 @@ int main () {
         transform(question.begin(), question.end(), question.begin(), ::tolower);
         cout << "Welcome to the game! Find anagrams for the word:  " << question<< endl;
         cout << "All the letters given in the word must be present the exact number of times as they appear in the word and no extra letters must be used." << endl;
+        cin.ignore(256, '\n');
         string anagram;
         cout<<"Enter your anagram: "<<endl;
         getline(cin,anagram);

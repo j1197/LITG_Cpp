@@ -24,6 +24,22 @@
 
 using namespace std;
 
+string selectwordforanagram(){
+    srand(time(0));
+    int random = rand();
+    int min = 0;
+    int max = 44000;
+    //cout << "Seed = " << time(0) << endl;
+    int finalNum = rand()%(max-min+1)+min;
+    //cout << "Random number = " << finalNum << endl;
+    vector<string> words;
+    ifstream file("./listofanagrams.txt");
+    string line;
+    while (getline(file, line)) words.push_back(line);
+    string word = words[rand() % words.size()];
+    return word;
+}
+
 
 string removespaces(string str){
     str.erase(remove(str.begin(), str.end(), ' '), str.end());
@@ -309,7 +325,7 @@ int main () {
     cin >> gameselection;
 
 
-    if(gameselection == 'U'){
+    if(gameselection == ('U' | 'u')){
         string chosenword = selectword();
         //cout << chosenword;
         string shuffledword = shuffling(chosenword);
@@ -330,7 +346,7 @@ int main () {
             exit(0);}}
 
 
-    else if(gameselection == 'G'){
+    else if(gameselection == ('G' | 'g')){
         string chosenword = selectword();
         transform(chosenword.begin(), chosenword.end(), chosenword.begin(), ::tolower);
         list<char> chosenwordlist(chosenword.begin(), chosenword.end());
@@ -343,8 +359,8 @@ int main () {
         guessing(probableanswers,no_trials);}
 
 
-    else if(gameselection == 'A') {
-        string question = selectword();
+    else if(gameselection == ('A'|'a')) {
+        string question = selectwordforanagram();
         transform(question.begin(), question.end(), question.begin(), ::tolower);
         cout << "Welcome to the game! Find anagrams for the word:  " << question<< endl;
         cout << "All the letters given in the word must be present the exact number of times as they appear in the word and no extra letters must be used." << endl;
@@ -368,7 +384,7 @@ int main () {
 
 
 
-    else if(gameselection == 'H') {
+    else if(gameselection == ('H'|'h')) {
         string chosenword = selectword();
         cout << "Chosen word is " << chosenword << endl;
         transform(chosenword.begin(), chosenword.end(), chosenword.begin(), ::tolower);
@@ -394,7 +410,7 @@ int main () {
         hangman(chosenword,soFar);
     }
 
-    else if(gameselection == 'Q'){
+    else if(gameselection == ('Q'|'q')){
         cout << "Thank you for playing!" << endl;
         exit(0);}
 

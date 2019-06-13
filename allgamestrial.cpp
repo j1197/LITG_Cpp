@@ -117,7 +117,7 @@ int countxx(string s, char x){
 
 int actualword(string g){
     vector <string> words;
-    ifstream file("/Users/jp/Desktop/words.txt");
+    ifstream file("/./words.txt");
     string line;
     while (getline(file, line)) words.push_back(line);
     list<string> word_list(words.begin(),words.end());
@@ -194,7 +194,7 @@ int letterspresent ( string a, string b){
 
 list<string> knowpossiblewords(string wordlist){
     vector<string> words;
-    ifstream file("/Users/jp/Desktop/words.txt");
+    ifstream file("./words.txt");
     string line;
     while (getline(file, line)) words.push_back(line);
     list<string> possiblewords;
@@ -272,7 +272,7 @@ string selectword(){
     int finalNum = rand()%(max-min+1)+min;
     //cout << "Random number = " << finalNum << endl;
     vector<string> words;
-    ifstream file("/Users/jp/Desktop/words.txt");
+    ifstream file("./words.txt");
     string line;
     while (getline(file, line)) words.push_back(line);
     string word = words[rand() % words.size()];

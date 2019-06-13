@@ -323,9 +323,9 @@ int main () {
     cout << "Enter 'Q' to exit." << endl;
     char gameselection;
     cin >> gameselection;
+    gameselection = tolower(gameselection);
 
-
-    if(gameselection == ('U' | 'u')){
+    if(gameselection == 'u'){
         string chosenword = selectword();
         //cout << chosenword;
         string shuffledword = shuffling(chosenword);
@@ -346,7 +346,7 @@ int main () {
             exit(0);}}
 
 
-    else if(gameselection == ('G' | 'g')){
+    else if(gameselection == 'g'){
         string chosenword = selectword();
         transform(chosenword.begin(), chosenword.end(), chosenword.begin(), ::tolower);
         list<char> chosenwordlist(chosenword.begin(), chosenword.end());
@@ -359,7 +359,7 @@ int main () {
         guessing(probableanswers,no_trials);}
 
 
-    else if(gameselection == ('A'|'a')) {
+    else if(gameselection == 'a') {
         string question = selectwordforanagram();
         transform(question.begin(), question.end(), question.begin(), ::tolower);
         cout << "Welcome to the game! Find anagrams for the word:  " << question<< endl;
@@ -384,7 +384,7 @@ int main () {
 
 
 
-    else if(gameselection == ('H'|'h')) {
+    else if(gameselection == 'h') {
         string chosenword = selectword();
         cout << "Chosen word is " << chosenword << endl;
         transform(chosenword.begin(), chosenword.end(), chosenword.begin(), ::tolower);
@@ -410,7 +410,7 @@ int main () {
         hangman(chosenword,soFar);
     }
 
-    else if(gameselection == ('Q'|'q')){
+    else if(gameselection == 'q'){
         cout << "Thank you for playing!" << endl;
         exit(0);}
 

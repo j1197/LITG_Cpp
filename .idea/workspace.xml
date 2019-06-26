@@ -10,7 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fabc7a16-d299-4451-9b12-08118e05f3fc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/allgamestrial.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/allgamestrial.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,12 +22,12 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/allgamestrial.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="325" column="20" selection-start-line="325" selection-start-column="20" selection-end-line="325" selection-end-column="20" />
+            <state relative-caret-position="180">
+              <caret line="12" column="17" lean-forward="true" selection-end-line="429" />
             </state>
           </provider>
         </entry>
@@ -35,7 +35,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/newhangman.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-442">
+            <state relative-caret-position="330">
               <caret line="22" selection-start-line="22" selection-end-line="37" selection-end-column="1" />
             </state>
           </provider>
@@ -78,7 +78,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="631" />
-    <option name="y" value="29" />
+    <option name="y" value="23" />
     <option name="width" value="809" />
     <option name="height" value="797" />
   </component>
@@ -136,17 +136,18 @@
       <workItem from="1559569264759" duration="1018000" />
       <workItem from="1560012439119" duration="1187000" />
       <workItem from="1560390350139" duration="473000" />
+      <workItem from="1560436503071" duration="153000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="110456000" />
+    <option name="totallyTimeSpent" value="110891000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="631" y="29" width="809" height="797" extended-state="0" />
+    <frame x="652" y="27" width="809" height="797" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.075619295" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.07692308" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -254,17 +255,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/newhangman.cpp">
+    <entry file="file://$PROJECT_DIR$/allgamestrial.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-442">
-          <caret line="22" selection-start-line="22" selection-end-line="37" selection-end-column="1" />
+        <state relative-caret-position="180">
+          <caret line="12" column="17" lean-forward="true" selection-end-line="429" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/allgamestrial.cpp">
+    <entry file="file://$PROJECT_DIR$/newhangman.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="325" column="20" selection-start-line="325" selection-start-column="20" selection-end-line="325" selection-end-column="20" />
+        <state relative-caret-position="330">
+          <caret line="22" selection-start-line="22" selection-end-line="37" selection-end-column="1" />
         </state>
       </provider>
     </entry>
